@@ -22,9 +22,4 @@ interface MetadataUpdaterInterface
      * @param array<string, mixed> $metadata
      */
     public function updateMetadata(array &$metadata, int $tokenId, string $assetUri): void;
-
-    /**
-     * @param array<string, mixed> $metadata
-     */
-    public function updateMetadata(array &$metadata1, int $tokenId, string $assetUri): void;
 }
