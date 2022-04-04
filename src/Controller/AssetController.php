@@ -23,11 +23,19 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 #[Route(
     '/asset/{tokenId}.{_format}',
-    name: RouteName::GET_IMG_ASSET,GET_3D_ASSET,
+    name: RouteName::GET_IMG_ASSET,
     defaults: [
         '_format' => null,
     ],
 )]
+#[Route(
+    '/asset/{tokenId}.{_format}',
+    name: RouteName::GET_3D_ASSET,
+    defaults: [
+        '_format' => null,
+    ],
+)]
+
 final class AssetController extends AbstractNftController
 {
     public function __invoke(int $tokenId): Response
