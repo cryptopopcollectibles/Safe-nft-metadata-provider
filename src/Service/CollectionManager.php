@@ -83,7 +83,32 @@ final class CollectionManager
                 $metadata,
                 $tokenId,
                 $assetUri ?? $this->urlGenerator->generate(
-                    RouteName::GET_IMG_ASSET,GET_3D_ASSET,
+                    RouteName::GET_IMG_ASSET,
+                    [
+                        'tokenId' => $tokenId,
+                        '_format' => $this->collectionFilesystemDriver->getAssetsExtension(),
+                    ],
+                    UrlGeneratorInterface::ABSOLUTE_URL,
+                ),
+            );
+        }
+
+        return $metadata;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getMetadata(int $tokenId, string $assetUri = null): array
+    {
+        $metadata = $this->collectionFilesystemDriver->getMetadata($this->getMappedTokenId($tokenId));
+
+        foreach ($this->metadataUpdaters as $metadataUpdater) {
+            $metadataUpdater->updateMetadata(
+                $metadata,
+                $tokenId,
+                $assetUri ?? $this->urlGenerator->generate(
+                    RouteName::GET_3D_ASSET,
                     [
                         'tokenId' => $tokenId,
                         '_format' => $this->collectionFilesystemDriver->getAssetsExtension(),
