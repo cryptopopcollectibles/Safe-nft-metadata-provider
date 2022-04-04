@@ -23,7 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 #[Route(
     '/asset/{tokenId}.{_format}',
-    name: RouteName::GET_ASSET,
+    name: RouteName::GET_IMG_ASSET,GET_3D_ASSET,
     defaults: [
         '_format' => null,
     ],
