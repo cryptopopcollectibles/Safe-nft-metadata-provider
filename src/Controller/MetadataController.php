@@ -68,7 +68,7 @@ final class MetadataController extends AbstractNftController
                 return $this->collectionManager->getMetadata($tokenId);
             },
         );
-
+        
         return $this
             ->json($metadata)
             ->setPublic()

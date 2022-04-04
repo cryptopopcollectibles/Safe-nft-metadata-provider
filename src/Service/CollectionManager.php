@@ -98,11 +98,11 @@ final class CollectionManager
 
     public function getMetadata1(int $tokenId, string $assetUri = null): array
     {
-        $metadata = $this->collectionFilesystemDriver->getMetadata($this->getMappedTokenId($tokenId));
+        $metadata1 = $this->collectionFilesystemDriver->getMetadata1($this->getMappedTokenId($tokenId));
 
         foreach ($this->metadataUpdaters as $metadataUpdater) {
             $metadataUpdater->updateMetadata(
-                $metadata,
+                $metadata1,
                 $tokenId,
                 $assetUri ?? $this->urlGenerator->generate(
                     RouteName::GET_3D_ASSET,
@@ -115,7 +115,7 @@ final class CollectionManager
             );
         }
 
-        return $metadata;
+        return $metadata1;
     }
 
     public function getAssetResponse(int $tokenId): Response
@@ -189,6 +189,7 @@ final class CollectionManager
         $this->collectionFilesystemDriver->storeExportedMetadata(
             $tokenId,
             $this->getMetadata($tokenId, $uriPrefix.'/'.$tokenId.'.json'),
+            $this->getMetadata1($tokenId, $uriPrefix.'/'.$tokenId.'.json'),
         );
     }
 

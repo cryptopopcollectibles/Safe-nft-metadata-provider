@@ -28,7 +28,12 @@ interface CollectionFilesystemDriverInterface
     /**
      * @var string
      */
-    final public const ASSETS_PATH = '/assets';
+    final public const ASSETS_PATH_3D = '/assets/3dfiles';
+
+    /**
+     * @var string
+     */
+    final public const ASSETS_PATH_IMG = '/assets/Images';
 
     /**
      * @var string
@@ -58,7 +63,12 @@ interface CollectionFilesystemDriverInterface
     /**
      * @var string
      */
-    final public const EXPORTED_ASSETS_PATH = '/exported/assets';
+    final public const EXPORTED_ASSETS_PATH_3d = '/exported/assets/3dfiles';
+
+    /**
+     * @var string
+     */
+    final public const EXPORTED_ASSETS_PATH_IMG = '/exported/assets/Images';
 
     public function getAssetsExtension(): string;
 

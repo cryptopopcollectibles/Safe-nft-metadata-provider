@@ -63,7 +63,37 @@ final class LocalFilesystemDriver implements CollectionFilesystemDriverInterface
     public function getAssetResponse(int $tokenId): Response
     {
         $binaryFileResponse = new BinaryFileResponse(
-            $this->localCollectionPath.self::ASSETS_PATH.'/'.$tokenId.'.'.$this->assetsExtension,
+            $this->localCollectionPath.self::ASSETS_PATH_3D.'/'.$tokenId.'.'.$this->assetsExtension,
+        );
+        $binaryFileResponse->setContentDisposition(
+            HeaderUtils::DISPOSITION_INLINE,
+            $tokenId.'.'.$this->assetsExtension,
+        );
+
+        return $binaryFileResponse;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getMetadata1(int $tokenId): array
+    {
+        $metadataPath = $this->localCollectionPath.self::METADATA_PATH.'/'.$tokenId.'.json';
+        $metadata = Json::decode(FileSystem::read($metadataPath), Json::FORCE_ARRAY);
+
+        if (! is_array($metadata)) {
+            throw new LogicException('Unexpected metadata value (it must be an array).');
+        }
+
+        /** @var array<string, mixed> $metadata */
+
+        return $metadata;
+    }
+
+    public function getAssetResponse(int $tokenId): Response
+    {
+        $binaryFileResponse = new BinaryFileResponse(
+            $this->localCollectionPath.self::ASSETS_PATH_IMG.'/'.$tokenId.'.'.$this->assetsExtension,
         );
         $binaryFileResponse->setContentDisposition(
             HeaderUtils::DISPOSITION_INLINE,
@@ -150,8 +180,14 @@ final class LocalFilesystemDriver implements CollectionFilesystemDriverInterface
 
     public function clearExportedAssets(): void
     {
-        FileSystem::delete($this->localCollectionPath.self::EXPORTED_ASSETS_PATH);
+        FileSystem::delete($this->localCollectionPath.self::EXPORTED_ASSETS_PATH_3D);
     }
+
+    public function clearExportedAssets(): void
+    {
+        FileSystem::delete($this->localCollectionPath.self::EXPORTED_ASSETS_PATH_IMG);
+    }
+
 
     /**
      * @param array<string, mixed> $metadata
@@ -168,8 +204,27 @@ final class LocalFilesystemDriver implements CollectionFilesystemDriverInterface
     public function storeExportedAsset(int $sourceTokenId, int $targetTokenId): void
     {
         FileSystem::copy(
-            $this->localCollectionPath.self::ASSETS_PATH.'/'.$sourceTokenId.'.'.$this->assetsExtension,
-            $this->localCollectionPath.self::EXPORTED_ASSETS_PATH.'/'.$targetTokenId.'.'.$this->assetsExtension,
+            $this->localCollectionPath.self::ASSETS_PATH_3D.'/'.$sourceTokenId.'.'.$this->assetsExtension,
+            $this->localCollectionPath.self::EXPORTED_ASSETS_PATH_3D.'/'.$targetTokenId.'.'.$this->assetsExtension,
         );
     }
+
+     /**
+     * @param array<string, mixed> $metadata
+     */
+    public function storeExportedMetadata(int $tokenId, array $metadata): void
+    {
+        FileSystem::write(
+            $this->localCollectionPath.self::EXPORTED_METADATA_PATH.'/'.$tokenId.'.json',
+            Json::encode($metadata, Json::PRETTY),
+            null,
+        );
+    }
+
+    public function storeExportedAsset(int $sourceTokenId, int $targetTokenId): void
+    {
+        FileSystem::copy(
+            $this->localCollectionPath.self::ASSETS_PATH_IMG.'/'.$sourceTokenId.'.'.$this->assetsExtension,
+            $this->localCollectionPath.self::EXPORTED_ASSETS_PATH_IMG.'/'.$targetTokenId.'.'.$this->assetsExtension,
+        );
 }
