@@ -93,9 +93,6 @@ final class CollectionManager
             );
         }
 
-        return $metadata;
-    }
-
     /**
      * @return array<string, mixed>
      */
