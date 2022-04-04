@@ -93,9 +93,9 @@ final class CollectionManager
             );
         }
 
-    /**
-     * @return array<string, mixed>
-     */
+        return $metadata;
+    }
+
     public function getMetadata(int $tokenId, string $assetUri = null): array
     {
         $metadata = $this->collectionFilesystemDriver->getMetadata($this->getMappedTokenId($tokenId));
