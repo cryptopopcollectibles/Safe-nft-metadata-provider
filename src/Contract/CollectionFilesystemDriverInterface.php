@@ -80,13 +80,13 @@ interface CollectionFilesystemDriverInterface
     public function getMetadata(int $tokenId): array;
 
     public function getAssetResponse(int $tokenId): Response;
-    
+
     /**
      * @return array<string, mixed>
      */
     public function getMetadata1(int $tokenId): array;
 
-    public function getAssetResponse(int $tokenId): Response;
+    public function getAssetResponse1(int $tokenId): Response;
 
     /**
      * @return array<string, mixed>
