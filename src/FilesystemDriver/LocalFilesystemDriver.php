@@ -62,8 +62,8 @@ final class LocalFilesystemDriver implements CollectionFilesystemDriverInterface
 
     public function getMetadata1(int $tokenId): array
     {
-        $metadataPath = $this->localCollectionPath.self::METADATA_PATH.'/'.$tokenId.'.json';
-        $metadata1 = Json::decode(FileSystem::read($metadataPath), Json::FORCE_ARRAY);
+        $metadataPath1 = $this->localCollectionPath.self::METADATA_PATH.'/'.$tokenId.'.json';
+        $metadata1 = Json::decode(FileSystem::read($metadataPath1), Json::FORCE_ARRAY);
 
         if (! is_array($metadata1)) {
             throw new LogicException('Unexpected metadata value (it must be an array).');

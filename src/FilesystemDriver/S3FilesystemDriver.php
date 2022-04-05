@@ -257,8 +257,11 @@ final class S3FilesystemDriver implements CollectionFilesystemDriverInterface
     {
         $this->putObject(self::EXPORTED_METADATA_PATH.'/'.$tokenId.'.json', Json::encode($metadata1, Json::PRETTY));
     }
-
-
+    
+    
+    /**
+     * @param array<string, mixed> $metadata1
+     */
     public function storeExportedAsset1(int $sourceTokenId, int $targetTokenId): void
     {
         $this->copyObject(
