@@ -113,4 +113,11 @@ interface CollectionFilesystemDriverInterface
     public function storeExportedMetadata(int $tokenId, array $metadata): void;
 
     public function storeExportedAsset(int $sourceTokenId, int $targetTokenId): void;
+
+    /**
+     * @param array<string, mixed> $metadata1
+     */
+    public function storeExportedMetadata(int $tokenId, array $metadata1): void;
+
+    public function storeExportedAsset(int $sourceTokenId, int $targetTokenId): void;
 }
