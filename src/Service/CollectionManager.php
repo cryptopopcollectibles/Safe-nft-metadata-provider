@@ -96,6 +96,11 @@ final class CollectionManager
         return $metadata;
     }
 
+    public function getAssetResponse(int $tokenId): Response
+    {
+        return $this->collectionFilesystemDriver->getAssetResponse($this->getMappedTokenId($tokenId));
+    }
+
     /**
      * @return array<string, mixed>
      */
@@ -121,7 +126,7 @@ final class CollectionManager
         return $metadata1;
     }
 
-    public function getAssetResponse(int $tokenId): Response
+    public function getAssetResponse1(int $tokenId): Response
     {
         return $this->collectionFilesystemDriver->getAssetResponse($this->getMappedTokenId($tokenId));
     }
