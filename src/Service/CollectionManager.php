@@ -83,7 +83,7 @@ final class CollectionManager
                 $metadata,
                 $tokenId,
                 $assetUri ?? $this->urlGenerator->generate(
-                    RouteName::GET_IMG_ASSET
+                    RouteName::GET_IMG_ASSET,
                     [
                         'tokenId' => $tokenId,
                         '_format' => $this->collectionFilesystemDriver->getAssetsExtension(),
