@@ -95,17 +95,18 @@ final class CollectionManager
 
         return $metadata;
     }
+    
 
     /**
      * @return array<string, mixed>
      */
     public function getMetadata1(int $tokenId, string $assetUri = null): array
     {
-        $metadata1 = $this->collectionFilesystemDriver->getMetadata1($this->getMappedTokenId($tokenId));
+        $metadata = $this->collectionFilesystemDriver->getMetadata1($this->getMappedTokenId($tokenId));
 
         foreach ($this->metadataUpdaters as $metadataUpdater) {
             $metadataUpdater->updateMetadata(
-                $metadata1,
+                $metadata,
                 $tokenId,
                 $assetUri ?? $this->urlGenerator->generate(
                     RouteName::GET_3D_ASSET,
