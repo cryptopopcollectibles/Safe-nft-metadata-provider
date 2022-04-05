@@ -77,24 +77,9 @@ final class TemplatedMetadataUpdater implements MetadataUpdaterInterface
             }
 
             $metadata[$key] = $this->replacePlaceholders($value, $value1, $tokenId, $assetUri, $assetUri1);
+            $metadata1[$key] = $this->replacePlaceholders($value, $value1, $tokenId, $assetUri, $assetUri1);
         }
     }
-
-    public function updateMetadata1(array &$metadata,array &$metadata1, int $tokenId, string $assetUri, string $assetUri1): void
-    {
-        if (null === $this->template1) {
-            return;
-        }
-
-        foreach ($this->template1 as $key1 => $value1) {
-            if (! is_string($value1) || (isset($metadata1[$key1]) && ! is_string($metadata1[$key1]))) {
-                throw new RuntimeException('Deep level replacement is not supported in METADATA_TEMPLATE.');
-            }
-    
-            $metadata1[$key1] = $this->replacePlaceholders($value, $value1, $tokenId, $assetUri, $assetUri1);
-        }  
-    }
-
     private function replacePlaceholders(string $value, string $value1, int $tokenId, string $assetUri, string $assetUri1): string|int
     {
         if (self::INT_TOKEN_ID_PLACEHOLDER === $value) {
