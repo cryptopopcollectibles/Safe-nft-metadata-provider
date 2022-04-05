@@ -88,7 +88,7 @@ final class TemplatedMetadataUpdater implements MetadataUpdaterInterface
 
         return str_replace(
             [self::TOKEN_ID_PLACEHOLDER, self::ASSET_URI_PLACEHOLDER],
-            [(string) $tokenId, $assetUri, , $assetUri1],
+            [(string) $tokenId, $assetUri, $assetUri1],
             $value,
             $value1,
         );
