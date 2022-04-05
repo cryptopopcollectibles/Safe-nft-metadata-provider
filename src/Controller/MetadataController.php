@@ -70,6 +70,15 @@ final class MetadataController extends AbstractNftController
             },
         );
 
+        $metadata = $this->cache->get(
+            self::CACHE_TOKEN_METADATA.$tokenId,
+            function (ItemInterface $item) use ($tokenId): array {
+                $item->expiresAfter($this->getDefaultCacheExpiration());
+
+                return $this->collectionManager->getMetadata1($tokenId);
+            },
+        );
+
         return $this
             ->json($metadata)
             ->setPublic()
