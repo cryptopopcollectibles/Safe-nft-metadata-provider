@@ -87,6 +87,20 @@ final class LocalFilesystemDriver implements CollectionFilesystemDriverInterface
         return $binaryFileResponse;
     }
 
+    public function getAssetResponse1(int $tokenId): Response
+    {
+        $binaryFileResponse = new BinaryFileResponse(
+            $this->localCollectionPath.self::ASSETS_PATH.'/'.$tokenId.'.'.$this->assetsExtension,
+        );
+        $binaryFileResponse->setContentDisposition(
+            HeaderUtils::DISPOSITION_INLINE,
+            $tokenId.'.'.$this->assetsExtension,
+        );
+
+        return $binaryFileResponse;
+    }
+
+
     /**
      * @inheritdoc
      */
