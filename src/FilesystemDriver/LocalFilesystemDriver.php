@@ -63,15 +63,15 @@ final class LocalFilesystemDriver implements CollectionFilesystemDriverInterface
     public function getMetadata1(int $tokenId): array
     {
         $metadataPath = $this->localCollectionPath.self::METADATA_PATH.'/'.$tokenId.'.json';
-        $metadata = Json::decode(FileSystem::read($metadataPath), Json::FORCE_ARRAY);
+        $metadata1 = Json::decode(FileSystem::read($metadataPath), Json::FORCE_ARRAY);
 
-        if (! is_array($metadata)) {
+        if (! is_array($metadata1)) {
             throw new LogicException('Unexpected metadata value (it must be an array).');
         }
 
         /** @var array<string, mixed> $metadata1 */
 
-        return $metadata;
+        return $metadata1;
     }
 
     public function getAssetResponse(int $tokenId): Response
@@ -168,7 +168,7 @@ final class LocalFilesystemDriver implements CollectionFilesystemDriverInterface
     }
 
     /**
-     * @param array<string, mixed> $metadata
+     * @param array<string, mixed> $metadata, $metadata1
      */
     public function storeExportedMetadata(int $tokenId, array $metadata, array $metadata1): void
     {
