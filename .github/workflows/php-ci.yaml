@@ -40,7 +40,7 @@ jobs:
         run: composer rector
 
       - name: Run code-style checks (ECS)
-        run: composer --fix ecs
-        
+        run: composer ecs
+
       - name: Run PHPStan checks
         run: composer phpstan
