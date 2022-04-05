@@ -66,7 +66,6 @@ final class MetadataController extends AbstractNftController
                 $item->expiresAfter($this->getDefaultCacheExpiration());
 
                 return $this->collectionManager->getMetadata($tokenId);
-                return $this->collectionManager->getMetadata1($tokenId);
             },
         );
 
