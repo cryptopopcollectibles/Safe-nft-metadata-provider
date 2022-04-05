@@ -103,7 +103,7 @@ final class S3FilesystemDriver implements CollectionFilesystemDriverInterface
             throw new LogicException('Unexpected metadata value (it must be an array).');
         }
 
-        /** @var array<string, mixed> $metadata */
+        /** @var array<string, mixed> $metadata1 */
 
         return $metadata1;
     }
@@ -216,7 +216,7 @@ final class S3FilesystemDriver implements CollectionFilesystemDriverInterface
     }
 
     /**
-     * @param array<string, mixed> $metadata
+     * @param array<string, mixed> $metadata, $metadata1
      */
     public function storeExportedMetadata(int $tokenId, array $metadata, array $metadata1): void
     {

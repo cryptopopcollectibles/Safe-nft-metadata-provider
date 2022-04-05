@@ -78,11 +78,16 @@ interface CollectionFilesystemDriverInterface
      * @return array<string, mixed>
      */
     public function getMetadata(int $tokenId): array;
+
+    public function getAssetResponse(int $tokenId): Response;
+    
+    /**
+     * @return array<string, mixed>
+     */
     public function getMetadata1(int $tokenId): array;
 
     public function getAssetResponse(int $tokenId): Response;
 
-    
     /**
      * @return array<string, mixed>
      */
