@@ -22,15 +22,5 @@ interface MetadataUpdaterInterface
      * @param array<string, mixed> $metadata
      */
     public function updateMetadata(array &$metadata, array &$metadata1, int $tokenId, string $assetUri, string $assetUri1): void;
-}
-
-/**
- * @author Marco Lipparini <developer@liarco.net>
- */
-interface MetadataUpdaterInterface
-{
-    /**
-     * @param array<string, mixed> $metadata1
-     */
     public function updateMetadata1(array &$metadata, array &$metadata1, int $tokenId, string $assetUri, string $assetUri1): void;
 }
