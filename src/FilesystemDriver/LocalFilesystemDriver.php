@@ -182,7 +182,7 @@ final class LocalFilesystemDriver implements CollectionFilesystemDriverInterface
     }
 
     /**
-     * @param array<string, mixed> $metadata, $metadata1
+     * @param array<string, mixed> $metadata
      */
     public function storeExportedMetadata(int $tokenId, array $metadata): void
     {
