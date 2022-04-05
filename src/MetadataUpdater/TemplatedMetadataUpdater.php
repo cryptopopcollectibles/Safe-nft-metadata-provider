@@ -76,14 +76,6 @@ final class TemplatedMetadataUpdater implements MetadataUpdaterInterface
             }
 
             $metadata[$key] = $this->replacePlaceholders($value, $value1, $tokenId, $assetUri, $assetUri1);
-        }
-    }
-
-    public function updateMetadata1(array &$metadata,array &$metadata1, int $tokenId, string $assetUri, string $assetUri1): void
-    {
-        if (null === $this->template) {
-            return;
-        }
 
         foreach ($this->template as $key1 => $value1) {
             if (! is_string($value1) || (isset($metadata1[$key1]) && ! is_string($metadata1[$key1]))) {
@@ -92,7 +84,10 @@ final class TemplatedMetadataUpdater implements MetadataUpdaterInterface
     
             $metadata1[$key1] = $this->replacePlaceholders($value, $value1, $tokenId, $assetUri, $assetUri1);
         }  
+        }
     }
+
+
 
     private function replacePlaceholders(string $value, string $value1, int $tokenId, string $assetUri, string $assetUri1): string|int
     {
