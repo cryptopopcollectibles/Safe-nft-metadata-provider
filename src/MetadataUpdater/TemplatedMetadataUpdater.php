@@ -79,7 +79,6 @@ final class TemplatedMetadataUpdater implements MetadataUpdaterInterface
         }
     }
 
-
     public function updateMetadata1(array &$metadata,array &$metadata1, int $tokenId, string $assetUri, string $assetUri1): void
     {
         if (null === $this->template) {
