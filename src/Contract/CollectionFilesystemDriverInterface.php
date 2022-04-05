@@ -80,6 +80,13 @@ interface CollectionFilesystemDriverInterface
     public function getMetadata(int $tokenId): array;
 
     public function getAssetResponse(int $tokenId): Response;
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getMetadata1(int $tokenId): array;
+
+    public function getAssetResponse(int $tokenId): Response;
     
     /**
      * @return array<string, mixed>
@@ -108,9 +115,10 @@ interface CollectionFilesystemDriverInterface
     public function clearExportedAssets(): void;
 
     /**
-     * @param array<string, mixed> $metadata
+     * @param array<string, mixed> $metadata, $metadata1
      */
-    public function storeExportedMetadata(int $tokenId, array $metadata): void;
+    public function storeExportedMetadata(int $tokenId, array $metadata, array $metadata1): void;
 
     public function storeExportedAsset(int $sourceTokenId, int $targetTokenId): void;
+
 }

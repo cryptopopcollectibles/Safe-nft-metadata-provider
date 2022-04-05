@@ -20,7 +20,7 @@ use App\Contract\MetadataUpdaterInterface;
  */
 final class UriUpdater implements MetadataUpdaterInterface
 {
-    public function updateMetadata(array &$metadata,array &$metadata1, int $tokenId, string $assetUri, string $assetUri1): void
+    public function updateMetadata(array &$metadata, array &$metadata1, int $tokenId, string $assetUri, string $assetUri1): void
     {
         $metadata['image'] = $assetUri;
         $metadata1['3dfile'] = $assetUri1;
