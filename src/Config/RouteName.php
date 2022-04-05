@@ -18,25 +18,25 @@ class RouteName
     /**
      * @var string
      */
-    public const ROOT = 'root';
+    final public const ROOT = 'root';
 
     /**
      * @var string
      */
-    public const GET_IMG_ASSET = 'get_img_asset';
+    final public const GET_IMG_ASSET = 'get_img_asset';
+	
+    /**
+     * @var string
+     */
+    final public const GET_3D_ASSET = 'get_3d_asset';
 
     /**
      * @var string
      */
-    public const GET_3D_ASSET = 'get_3d_asset';
+    final public const GET_HIDDEN_ASSET = 'get_hidden_asset';
 
     /**
      * @var string
      */
-    public const GET_HIDDEN_ASSET = 'get_hidden_asset';
-
-    /**
-     * @var string
-     */
-    public const GET_METADATA = 'get_metadata';
+    final public const GET_METADATA = 'get_metadata';
 }
