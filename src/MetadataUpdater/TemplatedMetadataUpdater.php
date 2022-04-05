@@ -61,6 +61,7 @@ final class TemplatedMetadataUpdater implements MetadataUpdaterInterface
      */
     public function __construct(
         private readonly ?array $template,
+        private readonly ?array $template1,
     ) {
     }
 
@@ -81,11 +82,11 @@ final class TemplatedMetadataUpdater implements MetadataUpdaterInterface
 
     public function updateMetadata1(array &$metadata,array &$metadata1, int $tokenId, string $assetUri, string $assetUri1): void
     {
-        if (null === $this->template) {
+        if (null === $this->template1) {
             return;
         }
 
-        foreach ($this->template as $key1 => $value1) {
+        foreach ($this->template1 as $key1 => $value1) {
             if (! is_string($value1) || (isset($metadata1[$key1]) && ! is_string($metadata1[$key1]))) {
                 throw new RuntimeException('Deep level replacement is not supported in METADATA_TEMPLATE.');
             }
