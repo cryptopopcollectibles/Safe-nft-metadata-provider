@@ -34,13 +34,14 @@ jobs:
       - name: Composer install
         uses: ramsey/composer-install@v1
         with:
-          composer-options: --prefer-dist --ignore-platform-req=php --fix
+          composer-options: --prefer-dist --ignore-platform-req=php 
 
       - name: Run code-style checks (Rector)
         run: composer rector
 
       - name: Run code-style checks (ECS)
         run: composer ecs
-
+        options:
+        --fix
       - name: Run PHPStan checks
         run: composer phpstan
