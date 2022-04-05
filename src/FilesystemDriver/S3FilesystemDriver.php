@@ -235,7 +235,7 @@ final class S3FilesystemDriver implements CollectionFilesystemDriverInterface
     }
 
     /**
-     * @param array<string, mixed> $metadata, $metadata1
+     * @param array<string, mixed> $metadata
      */
     public function storeExportedMetadata(int $tokenId, array $metadata, array $metadata1): void
     {
@@ -249,6 +249,15 @@ final class S3FilesystemDriver implements CollectionFilesystemDriverInterface
             self::EXPORTED_ASSETS_PATH.'/'.$targetTokenId.'.'.$this->assetsExtension,
         );
     }
+
+    /**
+     * @param array<string, mixed> $metadata1
+     */
+    public function storeExportedMetadata1(int $tokenId, array $metadata1): void
+    {
+        $this->putObject(self::EXPORTED_METADATA_PATH.'/'.$tokenId.'.json', Json::encode($metadata1, Json::PRETTY));
+    }
+
 
     public function storeExportedAsset1(int $sourceTokenId, int $targetTokenId): void
     {
