@@ -29,7 +29,7 @@ use Symfony\Component\Routing\Annotation\Route;
     ],
 )]
 #[Route(
-    '/asset/{tokenId}.{_format}',
+    '/asset/3dfiles/{tokenId}.{_format}',
     name: RouteName::GET_3D_ASSET,
     defaults: [
         '_format' => null,

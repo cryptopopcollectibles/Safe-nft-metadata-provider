@@ -66,47 +66,11 @@ final class MetadataController extends AbstractNftController
                 $item->expiresAfter($this->getDefaultCacheExpiration());
 
                 return $this->collectionManager->getMetadata($tokenId);
-                return $this->collectionManager->getMetadata1($tokenId);
             },
         );
         
-
         return $this
             ->json($metadata)
-            ->setPublic()
-            ->setMaxAge($this->getDefaultCacheExpiration())
-        ;
-    }
-    
-    public function __invoke(int $tokenId): Response
-    {
-        if (! $this->isValidTokenId($tokenId)) {
-            $metadata = $this->cache->get(self::CACHE_HIDDEN_METADATA, function (ItemInterface $item): array {
-                $item->expiresAfter($this->getDefaultCacheExpiration());
-
-                return $this->collectionManager->getHiddenMetadata();
-            });
-
-            return $this
-                ->json($metadata)
-                ->setPublic()
-                ->setMaxAge($this->getDefaultCacheExpiration())
-            ;
-        }
-
-        $metadata1 = $this->cache->get(
-            self::CACHE_TOKEN_METADATA.$tokenId,
-            function (ItemInterface $item) use ($tokenId): array {
-                $item->expiresAfter($this->getDefaultCacheExpiration());
-        
-                return $this->collectionManager->getMetadata1($tokenId);
-            },
-        );
-        
-        
-
-        return $this
-            ->json($metadata1)
             ->setPublic()
             ->setMaxAge($this->getDefaultCacheExpiration())
         ;
