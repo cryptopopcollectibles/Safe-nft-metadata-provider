@@ -184,16 +184,33 @@ final class LocalFilesystemDriver implements CollectionFilesystemDriverInterface
     /**
      * @param array<string, mixed> $metadata, $metadata1
      */
-    public function storeExportedMetadata(int $tokenId, array $metadata, array $metadata1): void
+    public function storeExportedMetadata(int $tokenId, array $metadata): void
     {
         FileSystem::write(
             $this->localCollectionPath.self::EXPORTED_METADATA_PATH.'/'.$tokenId.'.json',
-            Json::encode($metadata, $metadata1, Json::PRETTY),
+            Json::encode($metadata, Json::PRETTY),
+            null,
+        );
+    }
+
+    public function storeExportedMetadata1(int $tokenId, array $metadata1): void
+    {
+        FileSystem::write(
+            $this->localCollectionPath.self::EXPORTED_METADATA_PATH.'/'.$tokenId.'.json',
+            Json::encode($metadata1, Json::PRETTY),
             null,
         );
     }
 
     public function storeExportedAsset(int $sourceTokenId, int $targetTokenId): void
+    {
+        FileSystem::copy(
+            $this->localCollectionPath.self::ASSETS_PATH.'/'.$sourceTokenId.'.'.$this->assetsExtension,
+            $this->localCollectionPath.self::EXPORTED_ASSETS_PATH.'/'.$targetTokenId.'.'.$this->assetsExtension,
+        );
+    }
+
+    public function storeExportedAsset1(int $sourceTokenId, int $targetTokenId): void
     {
         FileSystem::copy(
             $this->localCollectionPath.self::ASSETS_PATH.'/'.$sourceTokenId.'.'.$this->assetsExtension,
