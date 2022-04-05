@@ -197,6 +197,13 @@ final class CollectionManager
         $this->collectionFilesystemDriver->storeExportedMetadata(
             $tokenId,
             $this->getMetadata($tokenId, $uriPrefix.'/'.$tokenId.'.json'),
+        );
+    }
+
+    public function storeExportedMetadata1(int $tokenId, string $uriPrefix, string $uriPrefix1): void
+    {
+        $this->collectionFilesystemDriver->storeExportedMetadata(
+            $tokenId,
             $this->getMetadata1($tokenId, $uriPrefix1.'/'.$tokenId.'.json'),
         );
     }
