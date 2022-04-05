@@ -19,11 +19,7 @@ namespace App\Contract;
 interface MetadataUpdaterInterface
 {
     /**
-     * @param array<string, mixed> $metadata
+     * @param array<string, mixed> $metadata, $metadata1
      */
-    public function updateMetadata(
-        array &$metadata,
-        int $tokenId,
-        string $assetUri
-    ): void;
+    public function updateMetadata(array &$metadata, array &$metadata1, int $tokenId, string $assetUri, string $assetUri1): void;
 }

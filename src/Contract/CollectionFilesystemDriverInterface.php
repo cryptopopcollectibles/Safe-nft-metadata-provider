@@ -23,52 +23,52 @@ interface CollectionFilesystemDriverInterface
     /**
      * @var string
      */
-    public const METADATA_PATH = '/metadata';
+    final public const METADATA_PATH = '/metadata';
 
     /**
      * @var string
      */
-    public const ASSETS_PATH_3D = '/assets/3dfiles';
+    final public const ASSETS_PATH_3D = '/assets/3dfiles';
 
     /**
      * @var string
      */
-    public const ASSETS_PATH_IMG = '/assets/Images';
+    final public const ASSETS_PATH_IMG = '/assets/Images';
 
     /**
      * @var string
      */
-    public const HIDDEN_METADATA_PATH = '/hidden/hidden.json';
+    final public const HIDDEN_METADATA_PATH = '/hidden/hidden.json';
 
     /**
      * @var string
      */
-    public const HIDDEN_ASSET_PATH = '/hidden/hidden.';
+    final public const HIDDEN_ASSET_PATH = '/hidden/hidden.';
 
     /**
      * @var string
      */
-    public const ABI_PATH = '/abi.json';
+    final public const ABI_PATH = '/abi.json';
 
     /**
      * @var string
      */
-    public const MAPPING_PATH = '/mapping.json';
+    final public const MAPPING_PATH = '/mapping.json';
 
     /**
      * @var string
      */
-    public const EXPORTED_METADATA_PATH = '/exported/metadata';
+    final public const EXPORTED_METADATA_PATH = '/exported/metadata';
 
     /**
      * @var string
      */
-    public const EXPORTED_ASSETS_PATH_3d = '/exported/assets/3dfiles';
+    final public const EXPORTED_ASSETS_PATH_3d = '/exported/assets/3dfiles';
 
     /**
      * @var string
      */
-    public const EXPORTED_ASSETS_PATH_IMG = '/exported/assets/Images';
+    final public const EXPORTED_ASSETS_PATH_IMG = '/exported/assets/Images';
 
     public function getAssetsExtension(): string;
 
@@ -80,7 +80,7 @@ interface CollectionFilesystemDriverInterface
     public function getMetadata(int $tokenId): array;
 
     public function getAssetResponse(int $tokenId): Response;
-
+    
     /**
      * @return array<string, mixed>
      */
@@ -112,8 +112,5 @@ interface CollectionFilesystemDriverInterface
      */
     public function storeExportedMetadata(int $tokenId, array $metadata): void;
 
-    public function storeExportedAsset(
-        int $sourceTokenId,
-        int $targetTokenId
-    ): void;
+    public function storeExportedAsset(int $sourceTokenId, int $targetTokenId): void;
 }

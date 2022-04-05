@@ -52,6 +52,11 @@ final class TemplatedMetadataUpdater implements MetadataUpdaterInterface
     private const ASSET_URI_PLACEHOLDER = '{ASSET_URI}';
 
     /**
+     * @var string
+     */
+    private const ASSET_URI1_PLACEHOLDER = '{ASSET_URI1}';
+
+    /**
      * @param array<string, string> $template
      */
     public function __construct(
@@ -59,7 +64,7 @@ final class TemplatedMetadataUpdater implements MetadataUpdaterInterface
     ) {
     }
 
-    public function updateMetadata(array &$metadata, int $tokenId, string $assetUri): void
+    public function updateMetadata(array &$metadata,array &$metadata1, int $tokenId, string $assetUri, string $assetUri1): void
     {
         if (null === $this->template) {
             return;
@@ -70,11 +75,19 @@ final class TemplatedMetadataUpdater implements MetadataUpdaterInterface
                 throw new RuntimeException('Deep level replacement is not supported in METADATA_TEMPLATE.');
             }
 
-            $metadata[$key] = $this->replacePlaceholders($value, $tokenId, $assetUri);
+            $metadata[$key] = $this->replacePlaceholders($value, $value1, $tokenId, $assetUri, $assetUri1);
+        }
+
+        foreach ($this->template as $key1 => $value1) {
+            if (! is_string($value1) || (isset($metadata1[$key1]) && ! is_string($metadata1[$key1]))) {
+                throw new RuntimeException('Deep level replacement is not supported in METADATA_TEMPLATE.');
+            }
+
+            $metadata1[$key1] = $this->replacePlaceholders($value, $value1, $tokenId, $assetUri, $assetUri1);
         }
     }
 
-    private function replacePlaceholders(string $value, int $tokenId, string $assetUri): string|int
+    private function replacePlaceholders(string $value, string $value1, int $tokenId, string $assetUri, string $assetUri1): string|int
     {
         if (self::INT_TOKEN_ID_PLACEHOLDER === $value) {
             return $tokenId;
@@ -82,8 +95,8 @@ final class TemplatedMetadataUpdater implements MetadataUpdaterInterface
 
         return str_replace(
             [self::TOKEN_ID_PLACEHOLDER, self::ASSET_URI_PLACEHOLDER],
-            [(string) $tokenId, $assetUri],
-            $value,
+            [(string) $tokenId, $assetUri, , $assetUri1],
+            $value, $value1
         );
     }
 }

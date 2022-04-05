@@ -74,7 +74,7 @@ final class CollectionManager
     /**
      * @return array<string, mixed>
      */
-    public function getMetadata(int $tokenId, string $assetUri = null): array
+    public function getMetadata(int $tokenId, string $assetUri = null, string $assetUri1 = null): array
     {
         $metadata = $this->collectionFilesystemDriver->getMetadata($this->getMappedTokenId($tokenId));
 
@@ -83,7 +83,7 @@ final class CollectionManager
                 $metadata,
                 $tokenId,
                 $assetUri ?? $this->urlGenerator->generate(
-                    RouteName::GET_IMG_ASSET,
+                    RouteName::GET_IMG_ASSET
                     [
                         'tokenId' => $tokenId,
                         '_format' => $this->collectionFilesystemDriver->getAssetsExtension(),
@@ -95,12 +95,11 @@ final class CollectionManager
 
         return $metadata;
     }
-    
 
     /**
      * @return array<string, mixed>
      */
-    public function getMetadata1(int $tokenId, string $assetUri = null): array
+    public function getMetadata1(int $tokenId, string $assetUri = null, string $assetUri1 = null): array
     {
         $metadata1 = $this->collectionFilesystemDriver->getMetadata1($this->getMappedTokenId($tokenId));
 
@@ -108,7 +107,7 @@ final class CollectionManager
             $metadataUpdater->updateMetadata(
                 $metadata1,
                 $tokenId,
-                $assetUri ?? $this->urlGenerator->generate(
+                $assetUri1 ?? $this->urlGenerator->generate(
                     RouteName::GET_3D_ASSET,
                     [
                         'tokenId' => $tokenId,
@@ -188,11 +187,12 @@ final class CollectionManager
         $this->collectionFilesystemDriver->clearExportedAssets();
     }
 
-    public function storeExportedMetadata(int $tokenId, string $uriPrefix): void
+    public function storeExportedMetadata(int $tokenId, string $uriPrefix, string $uriPrefix1): void
     {
         $this->collectionFilesystemDriver->storeExportedMetadata(
             $tokenId,
             $this->getMetadata($tokenId, $uriPrefix.'/'.$tokenId.'.json'),
+            $this->getMetadata1($tokenId, $uriPrefix1.'/'.$tokenId.'.json'),
         );
     }
 
