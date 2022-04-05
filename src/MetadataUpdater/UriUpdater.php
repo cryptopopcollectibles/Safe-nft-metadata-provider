@@ -23,6 +23,10 @@ final class UriUpdater implements MetadataUpdaterInterface
     public function updateMetadata(array &$metadata, array &$metadata1, int $tokenId, string $assetUri, string $assetUri1): void
     {
         $metadata['image'] = $assetUri;
-        $metadata1['3dfile'] = $assetUri1;
+    }
+
+    public function updateMetadata1(array &$metadata, array &$metadata1, int $tokenId, string $assetUri, string $assetUri1): void
+    {
+        $metadata['3dfile'] = $assetUri1;
     }
 }
