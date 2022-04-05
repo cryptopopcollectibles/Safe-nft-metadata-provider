@@ -115,10 +115,19 @@ interface CollectionFilesystemDriverInterface
     public function clearExportedAssets(): void;
 
     /**
-     * @param array<string, mixed> $metadata, $metadata1
+     * @param array<string, mixed> $metadata
      */
-    public function storeExportedMetadata(int $tokenId, array $metadata, array $metadata1): void;
+    public function storeExportedMetadata(int $tokenId, array $metadata): void;
 
     public function storeExportedAsset(int $sourceTokenId, int $targetTokenId): void;
+
+    /**
+     * @param array<string, mixed> $metadata1
+     */
+    public function storeExportedMetadata1(int $tokenId, array $metadata1): void;
+
+    public function storeExportedAsset1(int $sourceTokenId, int $targetTokenId): void;
+
+}
 
 }

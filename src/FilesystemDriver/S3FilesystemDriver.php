@@ -250,6 +250,14 @@ final class S3FilesystemDriver implements CollectionFilesystemDriverInterface
         );
     }
 
+    public function storeExportedAsset1(int $sourceTokenId, int $targetTokenId): void
+    {
+        $this->copyObject(
+            self::ASSETS_PATH.'/'.$sourceTokenId.'.'.$this->assetsExtension,
+            self::EXPORTED_ASSETS_PATH.'/'.$targetTokenId.'.'.$this->assetsExtension,
+        );
+    }
+
     private function getObject(string $relativePath): FileObject
     {
         $result = $this->s3Client->getObject($this->generateArgs($relativePath));
