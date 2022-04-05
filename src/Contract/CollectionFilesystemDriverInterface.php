@@ -89,6 +89,13 @@ interface CollectionFilesystemDriverInterface
     public function getHiddenAssetResponse(): Response;
 
     /**
+     * @return array<string, mixed>
+     */
+    public function getHiddenMetadata1(): array;
+
+    public function getHiddenAssetResponse(): Response;
+
+    /**
      * @return object[]
      */
     public function getAbi(): array;
