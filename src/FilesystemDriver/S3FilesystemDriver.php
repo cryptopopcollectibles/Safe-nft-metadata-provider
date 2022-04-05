@@ -128,6 +128,25 @@ final class S3FilesystemDriver implements CollectionFilesystemDriverInterface
         return $response;
     }
 
+    public function getAssetResponse1(int $tokenId): Response
+    {
+        $object = $this->getObject(self::ASSETS_PATH.'/'.$tokenId.'.'.$this->assetsExtension);
+        $response = new Response(
+            $object->contents,
+            200,
+            [
+                'Content-Type' => $object->contentType,
+            ],
+        );
+        $disposition = HeaderUtils::makeDisposition(
+            HeaderUtils::DISPOSITION_INLINE,
+            $tokenId.'.'.$this->assetsExtension,
+        );
+        $response->headers->set('Content-Disposition', $disposition);
+
+        return $response;
+    }
+
     /**
      * @inheritdoc
      */
