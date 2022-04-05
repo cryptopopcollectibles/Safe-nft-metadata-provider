@@ -89,6 +89,26 @@ final class S3FilesystemDriver implements CollectionFilesystemDriverInterface
         return $metadata;
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function getMetadata1(int $tokenId): array
+    {
+        $metadata1 = Json::decode(
+            $this->getObject(self::METADATA_PATH.'/'.$tokenId.'.json')->contents,
+            Json::FORCE_ARRAY,
+        );
+
+        if (! is_array($metadata1)) {
+            throw new LogicException('Unexpected metadata value (it must be an array).');
+        }
+
+        /** @var array<string, mixed> $metadata */
+
+        return $metadata1;
+    }
+
+
     public function getAssetResponse(int $tokenId): Response
     {
         $object = $this->getObject(self::ASSETS_PATH.'/'.$tokenId.'.'.$this->assetsExtension);
@@ -198,9 +218,9 @@ final class S3FilesystemDriver implements CollectionFilesystemDriverInterface
     /**
      * @param array<string, mixed> $metadata
      */
-    public function storeExportedMetadata(int $tokenId, array $metadata): void
+    public function storeExportedMetadata(int $tokenId, array $metadata, array $metadata1): void
     {
-        $this->putObject(self::EXPORTED_METADATA_PATH.'/'.$tokenId.'.json', Json::encode($metadata, Json::PRETTY));
+        $this->putObject(self::EXPORTED_METADATA_PATH.'/'.$tokenId.'.json', Json::encode($metadata, Json::PRETTY), Json::encode($metadata1, Json::PRETTY));
     }
 
     public function storeExportedAsset(int $sourceTokenId, int $targetTokenId): void
