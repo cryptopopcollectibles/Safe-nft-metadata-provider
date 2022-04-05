@@ -129,5 +129,3 @@ interface CollectionFilesystemDriverInterface
     public function storeExportedAsset1(int $sourceTokenId, int $targetTokenId): void;
 
 }
-
-}
