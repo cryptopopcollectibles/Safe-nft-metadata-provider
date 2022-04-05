@@ -84,14 +84,14 @@ interface CollectionFilesystemDriverInterface
     /**
      * @return array<string, mixed>
      */
-    public function getHiddenMetadata(): array;
+    public function getMetadata1(int $tokenId): array;
 
-    public function getHiddenAssetResponse(): Response;
+    public function getAssetResponse(int $tokenId): Response;
 
     /**
      * @return array<string, mixed>
      */
-    public function getHiddenMetadata1(): array;
+    public function getHiddenMetadata(): array;
 
     public function getHiddenAssetResponse(): Response;
 
