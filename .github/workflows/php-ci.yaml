@@ -41,7 +41,7 @@ jobs:
 
       - name: Run code-style checks (ECS)
         run: composer ecs
-        options:
-        --fix
+        with:
+          options: --fix
       - name: Run PHPStan checks
         run: composer phpstan
